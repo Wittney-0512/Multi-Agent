@@ -1,0 +1,20 @@
+.user-message {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+  }
+  
+  .user-message .message-content {
+    background-color: #646cff;
+    color: white;
+    padding: 0.75rem;
+    border-radius: 8px;
+    max-width: 80%;
+  }
+  
+  .user-message .message-time {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-align: right;
+    margin-top: 0.25rem;
+  }

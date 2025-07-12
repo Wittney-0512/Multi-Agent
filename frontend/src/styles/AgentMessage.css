@@ -1,0 +1,44 @@
+.agent-message {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+  
+  .agent-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    margin-right: 0.75rem;
+    flex-shrink: 0;
+  }
+  
+  .message-content {
+    background-color: #333;
+    padding: 0.75rem;
+    border-radius: 8px;
+    max-width: 80%;
+  }
+  
+  .message-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.25rem;
+  }
+  
+  .agent-name {
+    font-weight: bold;
+  }
+  
+  .message-time {
+    font-size: 0.75rem;
+    color: #888;
+  }
+  
+  .message-text {
+    word-break: break-word;
+  }
