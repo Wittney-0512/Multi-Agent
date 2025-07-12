@@ -14,7 +14,11 @@ function MessageList({ messages }) {
           message.sender === 'user' ? (
             <UserMessage key={message.id} message={message} />
           ) : (
-            <AgentMessage key={message.id} message={message} />
+            <AgentMessage 
+              key={message.id} 
+              message={message}
+              // 可以传递更多属性给AgentMessage
+            />
           )
         ))
       )}

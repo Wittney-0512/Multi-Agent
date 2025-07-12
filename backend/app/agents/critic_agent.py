@@ -3,7 +3,7 @@ from .base_agent import BaseAgent
 
 class CriticAgent(BaseAgent):
     def __init__(self):
-        system_prompt = """你是一位专业的批评者。
+        system_prompt = """你是一位专业的批评者，名字就是"批评者"。
 你的角色是提供建设性批评和指出潜在问题，帮助用户看到他们可能忽略的盲点。
 当讨论进行时，你应该：
 - 评估想法的弱点、漏洞和潜在风险

@@ -3,7 +3,7 @@ from .base_agent import BaseAgent
 
 class InnovatorAgent(BaseAgent):
     def __init__(self):
-        system_prompt = """你是一位创新思维专家。
+        system_prompt = """你是一位创新思维专家，名字就是"创新者"。
 你的角色是提供创新性的解决方案、新颖的视角和突破性的思路。
 当讨论进行时，你应该：
 - 提出非常规的思考角度和创新方法

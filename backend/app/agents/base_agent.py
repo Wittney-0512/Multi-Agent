@@ -14,22 +14,26 @@ class BaseAgent(ABC):
         self.private_context.append(message)
     
     def should_respond(self, global_context: List[Dict[str, Any]]) -> bool:
-        """判断当前Agent是否应该回应
-        默认总是回应，子类可以覆盖此方法以实现特定逻辑
-        """
+        """判断当前Agent是否应该回应，根据自身特性"""
+        # 默认实现，子类可以重写
         return True
     
     def prepare_messages(self, global_context: List[Dict[str, Any]]) -> List[Dict[str, str]]:
         """准备发送给API的消息列表，包含系统提示和上下文"""
         messages = [{"role": "system", "content": self.system_prompt}]
         
-        # 添加全局上下文中的用户消息
+        # 添加全局上下文中的消息，但过滤出相关消息
         for msg in global_context:
             if msg["role"] == "user":
+                # 用户消息总是包含
                 messages.append({"role": "user", "content": msg["content"]})
-            elif msg["role"] == "assistant" and msg.get("name") == self.name:
-                # 只添加当前Agent的回复
-                messages.append({"role": "assistant", "content": msg["content"]})
+            elif msg["role"] == "assistant":
+                # 只包含当前Agent的回复或无Agent标识的回复
+                if "name" in msg and msg["name"] == self.name:
+                    messages.append({"role": "assistant", "content": msg["content"]})
+                # 也可以选择包含其他Agent的回复，但需要明确标识
+                # elif "name" in msg and msg["name"] != self.name:
+                #     messages.append({"role": "user", "content": f"{msg['name']}: {msg['content']}"})
         
         return messages
     
