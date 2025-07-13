@@ -1,5 +1,6 @@
 from typing import List, Dict, Optional, Any
 from .base_agent import BaseAgent
+import random
 
 class AdvisorAgent(BaseAgent):
     def __init__(self):
@@ -22,3 +23,10 @@ class AdvisorAgent(BaseAgent):
         
         messages = self.prepare_messages(global_context)
         return await self.openai_client.generate_completion(messages)
+    
+    async def should_respond_in_discussion(self, global_context: List[Dict[str, Any]], current_round: int) -> bool:
+        """顾问在讨论中的发言判断"""
+        # 顾问在讨论中比较积极，几乎总是参与
+        if current_round == 1:
+            return True  # 第一轮总是参与
+        return random.random() > 0.2  # 80%概率参与后续轮次

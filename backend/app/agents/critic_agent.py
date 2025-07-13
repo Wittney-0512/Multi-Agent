@@ -1,5 +1,6 @@
 from typing import List, Dict, Optional, Any
 from .base_agent import BaseAgent
+import random
 
 class CriticAgent(BaseAgent):
     def __init__(self):
@@ -52,3 +53,21 @@ class CriticAgent(BaseAgent):
         
         messages = self.prepare_messages(global_context)
         return await self.openai_client.generate_completion(messages)
+    
+    async def should_respond_in_discussion(self, global_context: List[Dict[str, Any]], current_round: int) -> bool:
+        """批评者在讨论中的发言判断"""
+        # 批评者更倾向于在有一些观点后再发表评论
+        if current_round == 1:
+            return True  # 第一轮也参与
+        
+        # 检查之前的讨论是否已经有其他Agent发言
+        has_previous_responses = False
+        for msg in reversed(global_context):
+            if msg.get("is_discussion", False) and msg["role"] == "assistant" and msg.get("discussion_round") == current_round - 1:
+                has_previous_responses = True
+                break
+        
+        # 如果前一轮有发言，批评者更有可能回应
+        if has_previous_responses:
+            return random.random() > 0.3  # 70%概率回应
+        return random.random() > 0.7  # 否则只有30%概率回应
