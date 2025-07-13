@@ -7,11 +7,37 @@
     gap: 1rem;
   }
   
-  .empty-state {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    color: #888;
-    font-style: italic;
-  }
+.empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #888;
+  font-style: italic;
+}
+
+.discussion-round-separator {
+  text-align: center;
+  margin: 1rem 0;
+  position: relative;
+}
+
+.discussion-round-separator::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background-color: #444;
+  z-index: 1;
+}
+
+.discussion-round-separator span {
+  background-color: #242424;
+  padding: 0 1rem;
+  position: relative;
+  z-index: 2;
+  color: #888;
+  font-size: 0.9rem;
+}

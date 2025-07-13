@@ -1,44 +1,90 @@
 .agent-message {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 1rem;
-  }
-  
-  .agent-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    color: white;
-    margin-right: 0.75rem;
-    flex-shrink: 0;
-  }
-  
-  .message-content {
-    background-color: #333;
-    padding: 0.75rem;
-    border-radius: 8px;
-    max-width: 80%;
-  }
-  
-  .message-header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 0.25rem;
-  }
-  
-  .agent-name {
-    font-weight: bold;
-  }
-  
-  .message-time {
-    font-size: 0.75rem;
-    color: #888;
-  }
-  
-  .message-text {
-    word-break: break-word;
-  }
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.agent-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+
+.message-content {
+  background-color: #333;
+  padding: 0.75rem;
+  border-radius: 8px;
+  max-width: 80%;
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.agent-name {
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+.discussion-round {
+  font-size: 0.75rem;
+  background-color: #555;
+  padding: 0.1rem 0.4rem;
+  border-radius: 10px;
+  margin-right: 0.5rem;
+  color: #ddd;
+}
+
+.summary-badge {
+  font-size: 0.75rem;
+  background-color: #ff9800;
+  padding: 0.1rem 0.4rem;
+  border-radius: 10px;
+  margin-right: 0.5rem;
+  color: white;
+}
+
+.message-time {
+  font-size: 0.75rem;
+  color: #888;
+  margin-left: auto;
+}
+
+.message-text {
+  word-break: break-word;
+}
+
+/* 讨论模式样式 */
+.discussion-message {
+  margin-left: 2rem;
+}
+
+/* 第一轮讨论没有缩进 */
+.discussion-message[data-round="1"] {
+  margin-left: 0;
+}
+
+/* 讨论总结样式 */
+.summary-message .message-content {
+  background-color: #424242;
+  border-left: 3px solid #ff9800;
+}
+
+/* 系统消息样式 */
+.system-message .message-content {
+  background-color: #424242;
+  font-style: italic;
+  max-width: 70%;
+  margin: 0 auto;
+  text-align: center;
+}
