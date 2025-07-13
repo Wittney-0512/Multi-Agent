@@ -36,17 +36,35 @@ function ChatInterface() {
 
     try {
       // 调用API获取Agent回复
-      const responses = await sendMessage(content)
+      const response = await sendMessage(content)
+      
+      // 检查是否是讨论模式
+      const isDiscussion = response.is_discussion || false
       
       // 添加Agent回复到消息列表
-      const agentMessages = responses.map((response, index) => ({
+      const agentMessages = response.responses.map((resp, index) => ({
         id: Date.now() + index + 1,
-        sender: response.agent_name,
-        content: response.content,
-        timestamp: new Date().toISOString()
+        sender: resp.agent_name,
+        content: resp.content,
+        timestamp: new Date().toISOString(),
+        discussionRound: resp.round,       // 讨论轮次
+        isSummary: resp.is_summary || false, // 是否是讨论总结
+        isDiscussion: isDiscussion         // 是否是讨论模式中的消息
       }))
       
-      setMessages(prev => [...prev, ...agentMessages])
+      // 对于讨论模式，添加一个讨论开始的系统消息
+      if (isDiscussion && agentMessages.length > 0) {
+        const discussionStartMessage = {
+          id: Date.now() - 1,
+          sender: 'system',
+          content: '以下是Agent关于此话题的讨论过程：',
+          timestamp: new Date().toISOString(),
+          isDiscussionStart: true
+        }
+        setMessages(prev => [...prev, discussionStartMessage, ...agentMessages])
+      } else {
+        setMessages(prev => [...prev, ...agentMessages])
+      }
     } catch (error) {
       console.error('获取回复失败:', error)
       // 添加错误消息

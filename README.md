@@ -1,4 +1,4 @@
-# Project Request: Multi-Agent Chat Demo
+# Multi-Agent Chat Demo
 
 包含前后端完整项目结构，以及使用的技术栈：
 
@@ -16,3 +16,5 @@
 
 
 需要注意的是，OpenAI的API规范只接受"system"、"user"和"assistant"作为合法的role值，所以在准备API请求时我们仍使用这些标准值，但在内部上下文中添加额外的字段来区分不同Agent
+
+当用户明确要求特定Agent回答时，其他Agent应该保持安静
